@@ -1,5 +1,4 @@
 require 'twilio-ruby'
-require './environment'
 
 class SmsMessagesController < ApplicationController
   def create
@@ -7,13 +6,13 @@ class SmsMessagesController < ApplicationController
       Rails.application.credentials[:ACCOUNT_SID],
       Rails.application.credentials[:AUTH_TOKEN]
     )
-
+    p client
     client.messages.create(
       from: Rails.application.credentials[:TWILIO_NUMBER],
       to: sms_message_params['mobile_number'],
       body: sms_message_params['message']
     )
-    render json: client
+    render json: { message: 'Ok!' }, status: :created
   end
 
   private

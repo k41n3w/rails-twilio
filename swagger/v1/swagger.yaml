@@ -1,11 +1,41 @@
 ---
-openapi: 3.0.1
+openapi: 3.0.0
 info:
   title: API V1
   version: v1
-paths: {}
-servers:
-- url: https://{defaultHost}
-  variables:
-    defaultHost:
-      default: www.example.com
+paths:
+  "/sms_messages":
+    post:
+      summary: Envia Mensagem SMS
+      tags:
+      - SMS
+      description: Endpoint para teste de envio de mensagem pela ferramenta Twilio
+      parameters: []
+      responses:
+        '201':
+          description: Enviou com sucesso!
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sms_message:
+                  type: object
+                  properties:
+                    mobile_number:
+                      type: string
+                      example: "+5519981907137"
+                    message:
+                      type: string
+                      example: Mesagem de Teste
+              required:
+              - mobile_number
+              - message
+components:
+  securitySchemes:
+    Bearer:
+      description: Chave JWT requerida
+      type: apiKey
+      name: Authorization
+      in: header
