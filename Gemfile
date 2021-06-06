@@ -28,6 +28,9 @@ gem 'rack-cors'
 # Tests
 gem 'rspec-rails'
 
+# API Doc
+gem 'rswag'
+
 # Send SMS controls
 gem 'twilio-ruby', '~> 5.54.1'
 
